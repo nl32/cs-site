@@ -1,0 +1,26 @@
+.link {
+  color:darkcyan;
+  float: left;
+  display: block;
+  padding:16px;
+  text-align: center;
+  text-decoration: none;
+}
+.link:hover{
+  background-color: azure;
+}
+.link a {
+  text-decoration: none;
+  color:black; 
+}
+.nav {
+  background-color: aliceblue;
+}
+.list {
+  list-style-type: none;
+  overflow: hidden;
+  margin:0%;
+  padding:0;
+}
+.login{
+}

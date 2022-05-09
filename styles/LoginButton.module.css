@@ -1,0 +1,10 @@
+.button {
+  text-align: center;
+  background-color: darkgray;
+  border: 1px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.button:hover{
+  background-color:gray;
+}
