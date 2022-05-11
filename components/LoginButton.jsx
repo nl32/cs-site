@@ -11,7 +11,6 @@ export default function LoginButton() {
   const [text, setText] = useState("");
   useEffect(() => {
     setText(user && user.username ? "logout" : "login");
-    console.log("user changed");
   }, [user]);
   return (
     <button
