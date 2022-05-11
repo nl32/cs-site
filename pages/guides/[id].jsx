@@ -1,5 +1,5 @@
 import { getAllPostIds, getPostData } from "../../lib/posts";
-import Head from "next/head"
+import Head from "next/head";
 export default function Post({ postData }) {
   return (
     <>
@@ -15,7 +15,7 @@ export default function Post({ postData }) {
   );
 }
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const paths = await getAllPostIds();
   return {
     paths,
     fallback: false,

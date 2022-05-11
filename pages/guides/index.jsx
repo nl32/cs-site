@@ -7,15 +7,15 @@ export default function index({ allPostsData }) {
       <section>
         <h2>Blog Posts:</h2>
         <ul>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, desc, title }) => (
             <li key={id}>
               <Link href={`/guides/${id}`}>
                 <a>{title}</a>
               </Link>
               <br />
-              {id}
+              {desc}
               <br />
-              {date}
+              {new Date(date).toLocaleDateString("en-us")}
             </li>
           ))}
         </ul>
@@ -24,7 +24,7 @@ export default function index({ allPostsData }) {
   );
 }
 export async function getStaticProps() {
-  const allPostsData = getAllPostsData();
+  const allPostsData = await getAllPostsData();
   return {
     props: {
       allPostsData,
