@@ -4,14 +4,15 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;
+  height: 4rem;
 }
 .item{
   list-style: none;
   overflow: hidden;
   margin:0%;
-  padding:0;
+  padding:5px;
   text-align: center;
+  
 }
 .item li {
   display: inline-block;
