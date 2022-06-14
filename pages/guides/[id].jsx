@@ -1,15 +1,21 @@
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
 export default function Post({ postData }) {
+  const date = new Date();
+  date.setTime(postData.date);
   return (
     <>
       <Head>
         <title>{postData.title}</title>
       </Head>
-      {postData.id}
+      By: {postData.author}
       <br />
-      {postData.date}
+      {date.toLocaleDateString()}
       <br />
+      Tags:{" "}
+      {postData.tags.map((x) => {
+        return x + ", ";
+      })}
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </>
   );

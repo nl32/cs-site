@@ -3,6 +3,11 @@ import { getAllPostsData } from "../../lib/posts";
 export default function index({ allPostsData }) {
   return (
     <>
+      <p>
+        <Link href="/guides/upload">
+          <a>upload post</a>
+        </Link>
+      </p>
       <p>Browse blog posts here:</p>
       <section>
         <h2>Blog Posts:</h2>
