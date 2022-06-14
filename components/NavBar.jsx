@@ -30,6 +30,11 @@ export default function NavBar() {
             <a>profile</a>
           </Link>
         </li>
+        <li className={styles.link}>
+          <Link href="/user/signup">
+            <a>signup</a>
+          </Link>
+        </li>
         <li>
           <LoginButton className={styles.login} />
         </li>
