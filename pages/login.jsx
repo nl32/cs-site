@@ -32,6 +32,7 @@ export default function login() {
           name="email"
         />
       </label>
+      <br />
       <label>
         Password:
         <input
