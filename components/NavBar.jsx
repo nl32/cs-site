@@ -16,11 +16,6 @@ export default function NavBar() {
           </Link>
         </li>
         <li className={styles.link}>
-          <Link href="/contact">
-            <a>contact</a>
-          </Link>
-        </li>
-        <li className={styles.link}>
           <Link href="/guides">
             <a>guides</a>
           </Link>
