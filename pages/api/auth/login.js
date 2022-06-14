@@ -17,6 +17,7 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
       username: dbUser.username,
       email: dbUser.email,
       _id: dbUser._id,
+      name: dbUser.name,
     };
     dbClient.close();
     await req.session.save();
