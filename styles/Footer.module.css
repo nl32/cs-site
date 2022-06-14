@@ -1,0 +1,19 @@
+.footer {
+  background-color: antiquewhite;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+.item{
+  list-style: none;
+  overflow: hidden;
+  margin:0%;
+  padding:0;
+  text-align: center;
+}
+.item li {
+  display: inline-block;
+  padding: 5px;
+}
