@@ -1,10 +1,14 @@
 import NavBar from "./NavBar";
+import Footer from "./Footer";
+import styles from "../styles/Layout.module.css";
 export default function Layout({ children }) {
-  const testList = [{ title: "error", description: "there is an error" }];
   return (
-    <>
-      <NavBar />
-      <> {children} </>
-    </>
+    <span className={styles.pageContainer}>
+      <span className={styles.contentWrap}>
+        <NavBar />
+        <>{children}</>
+      </span>
+      <Footer />
+    </span>
   );
 }
