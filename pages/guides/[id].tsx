@@ -1,6 +1,17 @@
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
-export default function Post({ postData }) {
+import { GetStaticProps, GetStaticPaths } from "next";
+
+type postData = {
+  id:string,
+  title:string,
+  desc:string,
+  date:number,
+  tags:string[],
+  author:string,
+  contentHtml:string,
+}
+export default function Post({ postData }:{postData:postData}) {
   const date = new Date();
   date.setTime(postData.date);
   return (
@@ -27,8 +38,8 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const postData = await getPostData(params.id as string);
   return {
     props: {
       postData,

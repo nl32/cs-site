@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
+import { prisma } from "../../../lib/db";
 export default async function update(
   req: NextApiRequest,
   res: NextApiResponse
