@@ -1,6 +1,6 @@
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetStaticProps } from "next";
 
 type postData = {
   id:string,
