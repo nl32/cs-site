@@ -21,7 +21,7 @@ export default function profile({ user }) {
 }
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
-    const user = req.session.user ? await getUser(req.session.user._id) : null;
+    const user = req.session.user ? await getUser(req.session.user.id) : null;
     return {
       props: {
         user: user,

@@ -16,7 +16,7 @@ export default function signup(props) {
         email: email,
         password: password,
       })
-      .then(router.push("/login"));
+      .then((x) => router.push("/login"));
   };
   return (
     <>

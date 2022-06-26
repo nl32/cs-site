@@ -5,3 +5,11 @@ export const ironOptions = {
     secure: process.env.NODE_ENV === "production",
   },
 };
+
+declare module "iron-session" {
+  interface IronSessionData {
+    user?: {
+      id: string;
+    };
+  }
+}
