@@ -10,14 +10,14 @@ export default function LoginButton() {
   const router = useRouter();
   const [text, setText] = useState("");
   useEffect(() => {
-    setText(user && user.username ? "logout" : "login");
+    setText(user && user.id ? "logout" : "login");
   }, [user]);
   return (
     <button
       className={styles.button}
       onClick={async (e) => {
         e.preventDefault();
-        if (user.username) {
+        if (user.id) {
           mutateUser(await axios.post("/api/auth/logout"), false);
           router.push("/logout");
         } else {
