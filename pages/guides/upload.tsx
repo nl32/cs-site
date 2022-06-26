@@ -2,8 +2,7 @@
 import { useState, useRef } from "react";
 import TagBox from "../../components/TagBox";
 import axios from "axios";
-import FormData from "form-data";
-export default function upload(props) {
+export default function upload(props:any) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [tags, setTags] = useState([]);
