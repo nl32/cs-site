@@ -20,7 +20,7 @@ export default function settings(props) {
         name: name,
         username: username,
         email: email,
-        id: user._id,
+        id: user.id,
       })
       .then((res) => {
         if (res.data.ok) {
@@ -72,7 +72,7 @@ export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
     return {
       props: {
-        user: await getUser(req.session.user.id),
+        user: await getUser(req.session.user ? req.session.user.id : ""),
       },
     };
   },
