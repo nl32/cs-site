@@ -1,4 +1,4 @@
-export default function contact(props) {
+export default function contact(props:any) {
   return (
     <div>
       <p>
