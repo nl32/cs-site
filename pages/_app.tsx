@@ -4,7 +4,6 @@ import { fetcher } from "../lib/swr";
 import Head from "next/head";
 import styles from "../styles/global.module.css";
 import { AppProps } from "next/app";
-import "../styles/globals.css"
 export default function app({ Component, pageProps }:AppProps) {
   return (
     <div className={styles.app}>
