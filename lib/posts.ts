@@ -39,7 +39,7 @@ export async function getPostData(id: string) {
         date: post.date,
         tags: post.tags,
         author: user.name,
-        published:post.published
+        published:post.published,
         contentHtml,
       };
     }
