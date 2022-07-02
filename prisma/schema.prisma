@@ -15,6 +15,7 @@ model posts {
   file        String
   tags        String[]
   title       String
+  published   Boolean
 }
 
 model users {
