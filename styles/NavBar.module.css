@@ -7,14 +7,13 @@
   text-decoration: none;
 }
 .link:hover{
-  background-color: azure;
+  background-color: #0C4CA6;
 }
 .link a {
   text-decoration: none;
-  color:black; 
 }
 .nav {
-  background-color: aliceblue;
+  background-color: #0b3e85;
 }
 .list {
   list-style-type: none;
