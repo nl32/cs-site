@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllPostsData } from "../../lib/posts";
+import { getAllPublishedPosts } from "../../lib/posts";
 export default function index({ allPostsData }) {
   return (
     <>
@@ -29,7 +29,7 @@ export default function index({ allPostsData }) {
   );
 }
 export async function getStaticProps() {
-  const allPostsData = await getAllPostsData();
+  const allPostsData = await getAllPublishedPosts();
   return {
     props: {
       allPostsData,

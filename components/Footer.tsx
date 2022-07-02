@@ -13,6 +13,7 @@ export default function Footer() {
                 src="/../public/Github-Mark-32px.png"
                 width="32px"
                 height="32px"
+                alt="Github"
               />
             </a>
           </Link>
