@@ -15,6 +15,7 @@ async function upload(req: NextApiRequest, res: NextApiResponse) {
           date: Date.now(),
           tags: tags,
           file: file,
+          published: false,
         },
       });
       res.statusCode = 201;

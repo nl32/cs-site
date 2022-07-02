@@ -40,10 +40,19 @@ export async function getPostData(id: string) {
     date: post.date,
     tags: post.tags,
     author: user.name,
+    published: post.published,
     contentHtml,
   };
 }
 export async function getAllPostsData() {
   const posts = await prisma.posts.findMany();
+  return posts;
+}
+export async function getAllPublishedPosts() {
+  const posts = await prisma.posts.findMany({
+    where: {
+      published: true,
+    },
+  });
   return posts;
 }
