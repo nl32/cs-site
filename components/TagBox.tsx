@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Tag from "./Tag";
 import styles from "../styles/TagBox.module.css";
-export default function TagBox({ tags, setTags }) {
+export default function TagBox({ tags, setTags }:{tags:string[],setTags:Dispatch<SetStateAction<string[]>>}) {
   const [tag, setTag] = useState("");
   const [error, setError] = useState("");
   return (

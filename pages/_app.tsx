@@ -7,6 +7,12 @@ import { AppProps } from "next/app";
 export default function app({ Component, pageProps }:AppProps) {
   return (
     <div className={styles.app}>
+      <style jsx global>{`
+        body {
+          margin: 0px;
+        }
+        `}
+      </style>
       <Head>
         <title>Mhs CS</title>
         <link rel="icon" href="/favicon.ico" />
