@@ -13,6 +13,9 @@ export default async function signup(
         username: username,
         hashedPassword: await argon2.hash(password),
         name: "",
+        verified: false,
+        admin: false,
+        officer: false,
       },
     });
     if (result) {

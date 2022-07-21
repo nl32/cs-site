@@ -19,9 +19,12 @@ model posts {
 }
 
 model users {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  email          String @unique(map: "_email")
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  email          String  @unique(map: "_email")
   hashedPassword String
   name           String
-  username       String @unique(map: "username_")
+  username       String  @unique(map: "username_")
+  verified       Boolean
+  admin          Boolean
+  officer        Boolean
 }
