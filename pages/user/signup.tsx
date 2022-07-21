@@ -1,22 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import axios from "axios";
 import { useRouter } from "next/router";
-import { useState } from "react";
-
-export default function signup(props) {
+import { FormEvent, useState } from "react";
+import { trpc } from "../../utils/trpc"
+export default function signup(props:any) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const handleSignup = (e) => {
+  const signupMutation = trpc.useMutation("user.signup")
+  const handleSignup = (e:FormEvent) => {
     e.preventDefault();
-    axios
-      .post("/api/auth/signup", {
-        username: username,
-        email: email,
-        password: password,
-      })
-      .then((x) => router.push("/login"));
+    signupMutation.mutate({
+      username:username,
+      email:email,
+      password:password
+    })
+    router.push("/user/login")
   };
   return (
     <>

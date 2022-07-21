@@ -4,7 +4,9 @@ import { fetcher } from "../lib/swr";
 import Head from "next/head";
 import styles from "../styles/global.module.css";
 import { AppProps } from "next/app";
-export default function app({ Component, pageProps }:AppProps) {
+import { withTRPC } from "@trpc/next";
+import { AppRouter } from "./api/trpc/[trpc]"
+const  app = ({ Component, pageProps }:AppProps) => {
   return (
     <div className={styles.app}>
       <style jsx global>{`
@@ -28,4 +30,18 @@ export default function app({ Component, pageProps }:AppProps) {
       </SWRConfig>
     </div>
   );
-}
+};
+
+export default withTRPC<AppRouter>({config({ctx}){
+    const url = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}/api/trpc`
+    : 'http://localhost:3000/api/trpc';
+    return {url,
+    /**
+       * @link https://react-query.tanstack.com/reference/QueryClient
+       */
+      // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 }}
+  };
+},
+ssr:true
+})(app);
