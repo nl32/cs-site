@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { withIronSessionSsr } from "iron-session/next";
-import useUser from "../../lib/useUser";
 import { ironOptions } from "../../lib/config";
 import { useState } from "react";
 import Link from "next/link";

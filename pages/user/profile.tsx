@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { withIronSessionSsr } from "iron-session/next";
-import axios from "axios";
 import { ironOptions } from "../../lib/config";
 import { getUser } from "../../lib/user";
 import Profile from "../../components/Profile";
