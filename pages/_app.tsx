@@ -46,5 +46,5 @@ export default withTRPC<AppRouter>({
       // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 }}
     };
   },
-  ssr: true
+  ssr: false
 })(app);
