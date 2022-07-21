@@ -7,13 +7,13 @@ export default async function update(
   const { name, username, email, id } = req.body;
   const updateUser = await prisma.users.update({
     where: {
-      id: id,
+      id: id
     },
     data: {
       name: name,
       email: email,
-      username: username,
-    },
+      username: username
+    }
   });
   if (updateUser) {
     res.send({ ok: true });

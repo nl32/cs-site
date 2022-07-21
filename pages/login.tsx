@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import useUser from "../lib/useUser";
@@ -8,12 +8,12 @@ export default function login() {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const { mutateUser } = useUser();
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:FormEvent) => {
     event.preventDefault();
     axios
       .post("/api/auth/login", {
         email: email,
-        password: password,
+        password: password
       })
       .then(function (response) {
         mutateUser();

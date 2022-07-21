@@ -5,14 +5,15 @@ import Head from "next/head";
 import styles from "../styles/global.module.css";
 import { AppProps } from "next/app";
 import { withTRPC } from "@trpc/next";
-import { AppRouter } from "./api/trpc/[trpc]"
-const  app = ({ Component, pageProps }:AppProps) => {
+import { AppRouter } from "./api/trpc/[trpc]";
+const app = ({ Component, pageProps }: AppProps) => {
   return (
     <div className={styles.app}>
-      <style jsx global>{`
-        body {
-          margin: 0px;
-        }
+      <style jsx global>
+        {`
+          body {
+            margin: 0px;
+          }
         `}
       </style>
       <Head>
@@ -32,16 +33,18 @@ const  app = ({ Component, pageProps }:AppProps) => {
   );
 };
 
-export default withTRPC<AppRouter>({config({ctx}){
+export default withTRPC<AppRouter>({
+  config({ ctx }) {
     const url = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/api/trpc`
-    : 'http://localhost:3000/api/trpc';
-    return {url,
-    /**
+      ? `https://${process.env.VERCEL_URL}/api/trpc`
+      : "http://localhost:3000/api/trpc";
+    return {
+      url
+      /**
        * @link https://react-query.tanstack.com/reference/QueryClient
        */
       // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 }}
-  };
-},
-ssr:true
+    };
+  },
+  ssr: true
 })(app);

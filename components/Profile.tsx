@@ -1,5 +1,5 @@
 import styles from "../styles/Profile.module.css";
-export default function profile({ user }) {
+export default function profile({ user }: any) {
   return (
     <div className={styles.container}>
       <div></div>

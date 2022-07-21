@@ -1,25 +1,25 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { withIronSessionSsr } from "iron-session/next";
 import { ironOptions } from "../../lib/config";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { getUser } from "../../lib/user";
-export default function settings(props) {
+export default function settings(props:any) {
   const { user } = props;
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState(user.name);
   const router = useRouter();
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:FormEvent) => {
     e.preventDefault();
     axios
       .post("/api/auth/update", {
         name: name,
         username: username,
         email: email,
-        id: user.id,
+        id: user.id
       })
       .then((res) => {
         if (res.data.ok) {
@@ -71,8 +71,8 @@ export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
     return {
       props: {
-        user: await getUser(req.session.user ? req.session.user.id : ""),
-      },
+        user: await getUser(req.session.user ? req.session.user.id : "")
+      }
     };
   },
   ironOptions

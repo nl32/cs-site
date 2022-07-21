@@ -7,7 +7,7 @@ export const userRouter = trpc.router().mutation("signup", {
   input: z.object({
     username: z.string().min(3).max(12),
     email: z.string().email(),
-    password: z.string().min(5).max(32),
+    password: z.string().min(5).max(32)
   }),
   async resolve({ input }) {
     const { username, email, password } = input;
@@ -19,11 +19,11 @@ export const userRouter = trpc.router().mutation("signup", {
         name: "",
         verified: false,
         admin: false,
-        officer: false,
-      },
+        officer: false
+      }
     });
     return result;
-  },
+  }
 });
 
 export default userRouter;

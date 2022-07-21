@@ -1,8 +1,8 @@
 import { Params } from "next/dist/server/router";
 import { useMemo } from "react";
-import { useTable } from "react-table"
-export default function Admin(props:Params){
-/*   const columns = useMemo(
+import { useTable } from "react-table";
+export default function Admin(props: Params) {
+  /*   const columns = useMemo(
     () => [
         {
             Header: "Title",
@@ -35,11 +35,10 @@ export default function Admin(props:Params){
         </thead>
         <tbody>
           <tr>
-            <td>
-            </td>
+            <td></td>
           </tr>
         </tbody>
       </table>
     </>
-  )
+  );
 }

@@ -1,21 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
-import { trpc } from "../../utils/trpc"
-export default function signup(props:any) {
+import { trpc } from "../../utils/trpc";
+export default function signup(props: any) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const signupMutation = trpc.useMutation("user.signup")
-  const handleSignup = (e:FormEvent) => {
+  const signup = trpc.useMutation("user.signup");
+  const handleSignup = (e: FormEvent) => {
     e.preventDefault();
-    signupMutation.mutate({
-      username:username,
-      email:email,
-      password:password
-    })
-    router.push("/user/login")
+    signup.mutate({
+      username: username,
+      email: email,
+      password: password
+    });
+    router.push("/user/login");
   };
   return (
     <>

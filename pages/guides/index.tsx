@@ -32,7 +32,7 @@ export async function getStaticProps() {
   const allPostsData = await getAllPublishedPosts();
   return {
     props: {
-      allPostsData,
-    },
+      allPostsData
+    }
   };
 }

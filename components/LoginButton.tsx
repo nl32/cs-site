@@ -4,7 +4,7 @@ import useUser from "../lib/useUser";
 import { useEffect } from "react";
 import { useState } from "react";
 import styles from "../styles/LoginButton.module.css";
-export default function LoginButton(props:any) {
+export default function LoginButton(props: any) {
   const { user, mutateUser } = useUser();
   const router = useRouter();
   const [text, setText] = useState("");

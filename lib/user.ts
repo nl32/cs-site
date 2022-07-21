@@ -1,14 +1,14 @@
 import { prisma } from "./db";
-export async function getUser(id) {
+export async function getUser(id:any) {
   const user = await prisma.users.findUnique({
     where: {
-      id: id,
-    },
+      id: id
+    }
   });
   return {
-    username: user.username,
-    email: user.email,
+    username: user?.username,
+    email: user?.email,
     id: id,
-    name: user.name,
+    name: user?.name
   };
 }

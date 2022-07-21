@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 import TagBox from "../../components/TagBox";
 import axios from "axios";
-export default function upload(props:any) {
+export default function upload(props: any) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [tags, setTags] = useState([]);
@@ -18,7 +18,7 @@ export default function upload(props:any) {
         title: title,
         desc: desc,
         tags: tags,
-        file: vibe,
+        file: vibe
       });
     });
   };

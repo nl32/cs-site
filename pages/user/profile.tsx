@@ -5,7 +5,7 @@ import { getUser } from "../../lib/user";
 import Profile from "../../components/Profile";
 import Link from "next/link";
 import { useRouter } from "next/router";
-export default function profile({ user }) {
+export default function profile({ user }:any) {
   const router = useRouter();
   if (!user) {
     router.push("/login");
@@ -23,8 +23,8 @@ export const getServerSideProps = withIronSessionSsr(
     const user = req.session.user ? await getUser(req.session.user.id) : null;
     return {
       props: {
-        user: user,
-      },
+        user: user
+      }
     };
   },
   ironOptions
