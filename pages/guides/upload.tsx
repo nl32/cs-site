@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent } from "react";
 import TagBox from "../../components/TagBox";
 import axios from "axios";
 export default function upload(props: any) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [tags, setTags] = useState([]);
-  const [file, setFile] = useState(null);
-  const handleSubmit = (e) => {
+  const [tags, setTags] = useState<string[]>([]);
+  const [file, setFile] = useState<Blob>();
+  const handleSubmit = (e:FormEvent) => {
     e.preventDefault();
     console.log(file);
     const reader = new FileReader();
-    reader.readAsBinaryString(file);
+    if(file) reader.readAsBinaryString(file);
     reader.addEventListener("load", (event) => {
       const vibe = reader.result;
       axios.post("/api/guides/upload", {
@@ -22,7 +22,7 @@ export default function upload(props: any) {
       });
     });
   };
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setFile(e.target.files[0]);
   };
   return (

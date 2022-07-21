@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllPublishedPosts } from "../../lib/posts";
-export default function index({ allPostsData }) {
+export default function index({ allPostsData }:any) {
   return (
     <>
       <p>
@@ -12,7 +12,7 @@ export default function index({ allPostsData }) {
       <section>
         <h2>Blog Posts:</h2>
         <ul>
-          {allPostsData.map(({ id, date, desc, title }) => (
+          {allPostsData.map(({ id, date, desc, title }:{id:string,date:number,desc:string,title:string}) => (
             <li key={id}>
               <Link href={`/guides/${id}`}>
                 <a>{title}</a>
