@@ -4,9 +4,6 @@ import TagBox from "../../components/TagBox";
 import { requireAuth } from "../../lib/requireAuth";
 import { trpc } from "../../utils/trpc";
 
-export const getServerSideProps = requireAuth(async (ctx) => {
-  return { props: {} };
-});
 //TODO rewrite form with react-form-hook instead of controlled state
 export default function upload(props: any) {
   const [title, setTitle] = useState("");

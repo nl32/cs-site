@@ -4,9 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { requireAuth } from "../../lib/requireAuth";
 import { trpc } from "../../utils/trpc";
-export const getServerSideProps = requireAuth(async (ctx) => {
-  return { props: {} };
-});
+
 export default function profile() {
   const { data } = useSession();
   const userQuery = trpc.useQuery(["user.get", { id: data?.id as string }]);

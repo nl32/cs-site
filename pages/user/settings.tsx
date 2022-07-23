@@ -6,10 +6,6 @@ import { useSession } from "next-auth/react";
 import { trpc } from "../../utils/trpc";
 import { requireAuth } from "../../lib/requireAuth";
 
-export const getServerSideProps = requireAuth(async (ctx) => {
-  return { props: {} };
-});
-
 export default function settings(props: any) {
   const session = useSession();
   const { data } = trpc.useQuery([
