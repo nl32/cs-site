@@ -19,7 +19,7 @@ export default function signup(props: any) {
         router.push("/");
       }
     },
-    [signup, router]
+    [mutateAsync, router]
   );
 
   return (
