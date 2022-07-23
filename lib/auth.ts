@@ -57,7 +57,7 @@ export const nextAuthOptions: NextAuthOptions = {
     }
   },
   jwt: {
-    secret: (process.env.JWT_SECRET as string) || "",
+    secret: (process.env.NEXTAUTH_SECRET as string) || "",
     maxAge: 15 * 24 * 60 * 60
   },
   pages: {
