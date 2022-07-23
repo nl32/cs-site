@@ -2,51 +2,41 @@
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { trpc } from "../../utils/trpc";
+import Head from "next/head";
+import Link from "next/link";
+import { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ISignUp, signUpSchema } from "../../lib/validation/auth";
+
 export default function signup(props: any) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
-  const signup = trpc.useMutation("user.signup");
-  const handleSignup = (e: FormEvent) => {
-    e.preventDefault();
-    signup.mutate({
-      username: username,
-      email: email,
-      password: password
-    });
-    router.push("/user/login");
-  };
+  const { register, handleSubmit } = useForm<ISignUp>({
+    resolver: zodResolver(signUpSchema)
+  });
+  const { mutateAsync } = trpc.useMutation("user.signup");
+  const onSubmit = useCallback(
+    async (data: ISignUp) => {
+      const result = await mutateAsync(data);
+      if (result.status === 201) {
+        router.push("/");
+      }
+    },
+    [signup, router]
+  );
+
   return (
     <>
       <div>
-        <form action="" onSubmit={handleSignup}>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="username">username:</label>
-          <input
-            type="text"
-            name="username"
-            id=""
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <input type="text" id="" {...register("username")} />
           <br />
           <label htmlFor="email">email:</label>
-          <input
-            type="email"
-            name="email"
-            id=""
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input type="email" id="" {...register("email")} />
           <br />
           <label htmlFor="password">password:</label>
-          <input
-            type="password"
-            name="password"
-            id=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <input type="password" id="" {...register("password")} />
           <br />
           <input type="submit" value="Create account" />
         </form>

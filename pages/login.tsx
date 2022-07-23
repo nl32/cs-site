@@ -1,46 +1,29 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { FormEvent, useState } from "react";
-import axios from "axios";
+import { FormEvent, useCallback, useState } from "react";
 import { useRouter } from "next/router";
-import useUser from "../lib/useUser";
+import { useForm } from "react-hook-form";
+import { ILogin, loginSchema } from "../lib/validation/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 export default function login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
-  const { mutateUser } = useUser();
-  const handleSubmit = (event:FormEvent) => {
-    event.preventDefault();
-    axios
-      .post("/api/auth/login", {
-        email: email,
-        password: password
-      })
-      .then(function (response) {
-        mutateUser();
-        router.push("/user/profile");
-      });
-  };
+  const { register, handleSubmit } = useForm<ILogin>({
+    resolver: zodResolver(loginSchema)
+  });
+  const onSubmit = useCallback(async (data: ILogin) => {
+    await signIn("credentials", { ...data, callbackUrl: "/user/profile" });
+  }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <label>
         Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-        />
+        <input type="email" {...register("email")} />
       </label>
       <br />
       <label>
         Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          name="password"
-        />
+        <input type="password" {...register("password")} />
       </label>
       <input type="submit" value="login" />
     </form>

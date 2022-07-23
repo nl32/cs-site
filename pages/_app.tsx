@@ -3,9 +3,10 @@ import Layout from "../components/Layout";
 import { fetcher } from "../lib/swr";
 import Head from "next/head";
 import styles from "../styles/global.module.css";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import { withTRPC } from "@trpc/next";
 import { AppRouter } from "./api/trpc/[trpc]";
+import { SessionProvider } from "next-auth/react";
 const app = ({ Component, pageProps }: AppProps) => {
   return (
     <div className={styles.app}>
@@ -20,15 +21,17 @@ const app = ({ Component, pageProps }: AppProps) => {
         <title>Mhs CS</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SWRConfig
-        value={{ fetcher: fetcher, onError: (err) => console.log(err) }}
-      >
-        <Layout>
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </Layout>
-      </SWRConfig>
+      <SessionProvider session={pageProps.session}>
+        <SWRConfig
+          value={{ fetcher: fetcher, onError: (err) => console.log(err) }}
+        >
+          <Layout>
+            <main>
+              <Component {...pageProps} />
+            </main>
+          </Layout>
+        </SWRConfig>
+      </SessionProvider>
     </div>
   );
 };

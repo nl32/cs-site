@@ -4,20 +4,21 @@ import useUser from "../lib/useUser";
 import { useEffect } from "react";
 import { useState } from "react";
 import styles from "../styles/LoginButton.module.css";
+import { signOut, useSession } from "next-auth/react";
 export default function LoginButton(props: any) {
-  const { user, mutateUser } = useUser();
+  const { data } = useSession();
   const router = useRouter();
   const [text, setText] = useState("");
   useEffect(() => {
-    setText(user && user.id ? "logout" : "login");
-  }, [user]);
+    setText(data && data.id ? "logout" : "login");
+  }, [data]);
   return (
     <button
       className={styles.button}
       onClick={async (e) => {
         e.preventDefault();
-        if (user.id) {
-          mutateUser(await axios.post("/api/auth/logout"), false);
+        if (data?.id) {
+          signOut();
           router.push("/logout");
         } else {
           router.push("/login");
