@@ -11,7 +11,7 @@ export const requireAuth =
       nextAuthOptions
     );
 
-    if (!session) {
+    if (!session?.id) {
       return {
         redirect: {
           destination: "/user/login",
