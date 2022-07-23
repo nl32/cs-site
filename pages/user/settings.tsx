@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { trpc } from "../../utils/trpc";
-import { requireAuth } from "../../lib/requireAuth";
 
 export default function settings(props: any) {
   const session = useSession();

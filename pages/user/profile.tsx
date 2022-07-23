@@ -2,7 +2,6 @@
 import Profile from "../../components/Profile";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { requireAuth } from "../../lib/requireAuth";
 import { trpc } from "../../utils/trpc";
 
 export default function profile() {

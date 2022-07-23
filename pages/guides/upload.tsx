@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, FormEvent } from "react";
 import TagBox from "../../components/TagBox";
-import { requireAuth } from "../../lib/requireAuth";
 import { trpc } from "../../utils/trpc";
 
 //TODO rewrite form with react-form-hook instead of controlled state
