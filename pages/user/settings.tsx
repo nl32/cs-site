@@ -1,31 +1,30 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { withIronSessionSsr } from "iron-session/next";
-import { ironOptions } from "../../lib/config";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 import { useRouter } from "next/router";
-import { getUser } from "../../lib/user";
-export default function settings(props) {
-  const { user } = props;
-  const [username, setUsername] = useState(user.username);
-  const [email, setEmail] = useState(user.email);
-  const [name, setName] = useState(user.name);
+import { useSession } from "next-auth/react";
+import { trpc } from "../../utils/trpc";
+
+export default function settings(props: any) {
+  const session = useSession();
+  const { data } = trpc.useQuery([
+    "user.get",
+    { id: session.data?.id as string }
+  ]);
+  const user = data;
+  const [username, setUsername] = useState(user?.username);
+  const [email, setEmail] = useState(user?.email);
+  const [name, setName] = useState(user?.name);
   const router = useRouter();
-  const handleSubmit = async (e) => {
+  const update = trpc.useMutation("user.update");
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    axios
-      .post("/api/auth/update", {
-        name: name,
-        username: username,
-        email: email,
-        id: user.id,
-      })
-      .then((res) => {
-        if (res.data.ok) {
-          router.push("/user/profile");
-        }
-      });
+    await update.mutateAsync({
+      email: email as string,
+      username: username as string,
+      name: name as string
+    });
+    router.push("/user/profile");
   };
   return (
     <>
@@ -67,13 +66,3 @@ export default function settings(props) {
     </>
   );
 }
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    return {
-      props: {
-        user: await getUser(req.session.user ? req.session.user.id : ""),
-      },
-    };
-  },
-  ironOptions
-);

@@ -1,13 +1,13 @@
 .link {
-  color:darkcyan;
+  color: darkcyan;
   float: left;
   display: block;
-  padding:16px;
+  padding: 16px;
   text-align: center;
   text-decoration: none;
 }
-.link:hover{
-  background-color: #0C4CA6;
+.link:hover {
+  background-color: #0c4ca6;
 }
 .link a {
   text-decoration: none;
@@ -18,8 +18,8 @@
 .list {
   list-style-type: none;
   overflow: hidden;
-  margin:0%;
-  padding:0;
+  margin: 0%;
+  padding: 0;
 }
-.login{
+.login {
 }

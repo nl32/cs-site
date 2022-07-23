@@ -1,28 +1,31 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useRef } from "react";
+import { useState, FormEvent } from "react";
 import TagBox from "../../components/TagBox";
-import axios from "axios";
-export default function upload(props:any) {
+import { trpc } from "../../utils/trpc";
+
+//TODO rewrite form with react-form-hook instead of controlled state
+export default function upload(props: any) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [tags, setTags] = useState([]);
-  const [file, setFile] = useState(null);
-  const handleSubmit = (e) => {
+  const [tags, setTags] = useState<string[]>([]);
+  const [file, setFile] = useState<Blob>();
+  const uploadMutation = trpc.useMutation("post.upload");
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log(file);
     const reader = new FileReader();
-    reader.readAsBinaryString(file);
+    if (file) reader.readAsBinaryString(file);
     reader.addEventListener("load", (event) => {
-      const vibe = reader.result;
-      axios.post("/api/guides/upload", {
+      const vibe = reader.result as string;
+      uploadMutation.mutate({
         title: title,
         desc: desc,
-        tags: tags,
         file: vibe,
+        tags: tags
       });
     });
   };
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFile(e.target.files[0]);
   };
   return (

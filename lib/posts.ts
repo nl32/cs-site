@@ -5,14 +5,14 @@ import { prisma } from "./db";
 export async function getAllPostIds() {
   const posts = await prisma.posts.findMany({
     select: {
-      id: true,
-    },
+      id: true
+    }
   });
   const ids = posts.map((x) => {
     return {
       params: {
-        id: x.id,
-      },
+        id: x.id
+      }
     };
   });
   console.log(ids);
@@ -21,8 +21,8 @@ export async function getAllPostIds() {
 export async function getPostData(id: string) {
   const post = await prisma.posts.findUnique({
     where: {
-      id: id,
-    },
+      id: id
+    }
   });
   if (post) {
     const matterResult = matter(post.file);
@@ -39,8 +39,8 @@ export async function getPostData(id: string) {
         date: post.date,
         tags: post.tags,
         author: user.name,
-        published:post.published,
-        contentHtml,
+        published: post.published,
+        contentHtml
       };
     }
   }
@@ -52,8 +52,8 @@ export async function getAllPostsData() {
 export async function getAllPublishedPosts() {
   const posts = await prisma.posts.findMany({
     where: {
-      published: true,
-    },
+      published: true
+    }
   });
   return posts;
 }
