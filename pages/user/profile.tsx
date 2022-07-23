@@ -7,8 +7,8 @@ import { trpc } from "../../utils/trpc";
 export default function profile() {
   const { data } = useSession();
   const userQuery = trpc.useQuery(["user.get", { id: data?.id as string }]);
-  if(userQuery.isLoading){
-    return <>Loading.</>
+  if (userQuery.isLoading) {
+    return <>Loading.</>;
   }
   return (
     <div>
