@@ -1,9 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useRouter } from "next/router";
-import { FormEvent, useState } from "react";
 import { trpc } from "../../utils/trpc";
-import Head from "next/head";
-import Link from "next/link";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
